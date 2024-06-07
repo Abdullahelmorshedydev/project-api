@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Api\Auth\CheckEmailUserRequest;
 use App\Http\Requests\Api\Auth\LoginRequest;
 use App\Http\Requests\Api\Auth\RegisterRequest;
 use App\Http\Resources\AuthResourse;
@@ -13,6 +14,11 @@ use Illuminate\Http\Request;
 class AuthController extends Controller
 {
     use ApiResponseTrait;
+
+    public function checkEmail(CheckEmailUserRequest $request, AuthService $authService)
+    {
+        return $this->apiResponse($authService->checkEmail($request->validated()), '');
+    }
 
     public function login(LoginRequest $request, AuthService $authService)
     {

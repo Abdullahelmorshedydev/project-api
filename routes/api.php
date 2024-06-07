@@ -21,6 +21,7 @@ use Illuminate\Support\Facades\Route;
 ########## Guest Routes #############
 Route::middleware('guest')->group(function () {
     Route::controller(AuthController::class)->prefix('/auth')->group(function () {
+        Route::post('/check-email', 'checkEmail')->name('check_email');
         Route::post('/login', 'login')->name('login');
         Route::post('/register', 'register')->name('register');
     });

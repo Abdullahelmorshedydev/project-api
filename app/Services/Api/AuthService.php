@@ -9,6 +9,15 @@ use Illuminate\Validation\ValidationException;
 
 class AuthService
 {
+    public function checkEmail($data)
+    {
+        $user = User::where('email', $data['email'])->first();
+        if (!$user) {
+            return false;
+        }
+        return true;
+    }
+
     public function login($data)
     {
         $user = User::where('email', $data['email'])->first();
